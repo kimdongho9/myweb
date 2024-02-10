@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <title>서울시 도서관</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" type="text/css" /> 
+    <link rel="stylesheet" href="css/slick.css" type="text/css" />   
+    <link rel="stylesheet" href="css/tooplate-simply-amazed.css" type="text/css" />
+
+</head>
+
+
+
+<body>
+    <div id="outer">
+        <header class="header order-last" id="tm-header">
+            <nav class="navbar">
+                <div class="collapse navbar-collapse single-page-nav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section-1"><span class="icn"><i class="fas fa-2x fa-air-freshener"></i></span> 홈</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section-2"><span class="icn"><i class="fab fa-2x fa-battle-net"></i></span> 새로 나온 책</a>
+                        </li>
+                       
+                        <li class="nav-item">
+                            <a class="nav-link" href="#section-4"><span class="icn"><i class="far fa-2x fa-comments"></i></span> 찾아오시는 길</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        
+
+
+        <button class="navbar-button collapsed" type="button">
+            <span class="menu_icon">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </span>
+        </button>
+        
+        <main id="content-box" class="order-first">
+            <div class="banner-section section parallax-window" data-parallax="scroll" data-image-src="img/section-1-bg.jpg" id="section-1">
+                <div class="container">
+                    <div class="item">
+                        <div class="bg-blue-transparent logo-fa"><span><i class="fas fa-2x fa-atom"></i></span> 서울시 도서관</div>
+                        <div class="loginForm">	
+                            
+                            <p class="logo"><a href="/" title="메인화면"><img src="/image/ko/local/logo.png" alt="서울도서관"></a></p>
+                            <div id="kor">
+                                <form action="/login" name="loginForm" method="post" onsubmit="return fn_submit()">
+                                    <input type="hidden" name="deviceName" id="deviceName" value="">
+                                    <input type="hidden" name="snsId" id="snsId">
+                                    <input type="hidden" name="provider" id="provider">
+                                   <input type="hidden" name="retUrl" value="/libsch/list">
+                                        
+                                    
+                                    
+                                    <fieldset>
+                                        <legend>로그인</legend>			
+                                        <div class="inputFields">
+                                            <p class="inputId"><input type="text" id="id" name="id" title="도서관 아이디" placeholder="도서관 아이디"></p>
+                                            <p class="inputPw"><input type="password" id="password" name="password" title="비밀번호(9~15자리)" placeholder="비밀번호(9~15자리)"></p>
+                                            
+                                            <p class="saveId">
+                                                
+                                            </p>
+                                            <p class="inputSubmit"><input type="submit" value="로그인"></p>
+                                            <div class="snsBtnArea">
+                                                
+                                                <div class="snsLoginBtn naverBtn">
+                                                    <a id="naver_id_login_btn" style="border-radius: 4px">
+                                                        네이버 로그인
+                                                    </a>
+                                                    <div id="naverIdLogin" style="display: none"><a id="naverIdLogin_loginButton" href="#"><img src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.1" height="65"></a></div>
+                                                </div>
+                                                <div class="snsLoginBtn kakaoBtn" id="kakao_id_login">
+                                                    <a id="kakao_id_login_btn" style="border-radius: 4px;" href="javascript:loginWithKakao()">
+                                                        카카오 로그인
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="loginMenu">
+                                            <a href="/memberJoin/findId?target=Y" title="아이디찾기">아이디찾기</a>
+                                            <a href="/memberJoin/findPw?target=Y" title="비밀번호 재설정">비밀번호 재설정</a>
+                                            <a href="/memberJoin/agree?target=Y" target="_blank" title="새창으로열림">회원가입</a>
+                                        </div>
+                                        <p class="loginBg"></p>
+                                        <div class="loginFooter">              
+                                        </div>					
+                                    </fieldset>
+                                </form>
+                  </div>
+                 <div id="eng" style="display:none;">
+                                <form action="/login" method="post" onsubmit="return fn_submit()">
+                                    
+             <input type="hidden" name="retUrl" value="/libsch/list">
+        </main>
+                                    
+
+
+
+
+            <section class="work-section section" id="section-2">
+                <div class="container">
+                    <div class="row">
+
+                        <form>
+                            책 제목: <input type="text" name="name" id="name" value= ""><br><br>                           
+                            출력페이지 : <input type="number" value="1" id="curPage"><br>
+                            출력 줄 : <input type="number" value="10" id="itemPerPage"><br><br>
+
+                        <div id = btn_group>
+                            <button type="button" id = btn1 onclick="loadData()" >검색</button>
+                            <button type="button" id = btn2 onclick="removeTable()">지우기</button>
+                        </div>
+                        <br>
+                        </form>
+
+                        <table id="demoJSON"></table>
+                        <script>
+                            
+                        var api_key = "476749614c67757a373858794e5276";
+
+                        function removeTable(){
+
+	                    document.getElementById('demoJSON').innerHTML = "";
+                        }
+
+                        
+                        function loadData() {
+
+                            let name = document.getElementById('name').value.trim();
+                            let curPage = document.getElementById('curPage').value.trim();
+                            let itemPerPage = document.getElementById('itemPerPage').value.trim();
+                            let url
+
+
+
+                            //유효성 검사
+                            if(name === null || name === ''){
+                            alert('책 제목은 반드시 입력해야합니다');
+                            return;
+                            }
+                            
+                            if (curPage < 1 || isNaN(curPage)) {
+				            alert("페이지는 1이상 숫자 이어야 합니다.");
+				            itemPerPage.focus();
+				            return;
+			                }
+
+                            if (itemPerPage < 1 || itemPerPage > 10 ||isNaN(itemPerPage)) {
+				            alert("출력 줄은 1 ~ 10 사이의 정수입니다.");
+				            itemPerPage.focus();
+				            return;
+			                }
+                            // JSON
+                            url = `http://openapi.seoul.go.kr:8088/${api_key}/json/SeoulLibNewArrivalInfo/${curPage}/${itemPerPage}/${name}`;
+                            fetch(url)
+                            .then(response => response.json()) 
+                            .then(jsonObj => parseJSON(jsonObj))
+                            ;
+                                               
+                        } // end loadData()
+				
+                        function parseJSON(jsonObj){
+
+                        const table1 = [];
+                        table1.push("<tr><th>제목</th><th>작가</th><th>출판사</th><th>발행년도</th><th>입수일</th></tr>");
+
+                        jsonObj.SeoulLibNewArrivalInfo.row.forEach(row => {
+                        table1.push(`
+                        <tr>
+                            <td>${row.TITLE}</td>
+                            <td>${row.AUTHOR}</td>
+                            <td>${row.PUBLISHER}</td>
+                            <td>${row.PUBLISHER_YEAR}</td>
+                            <td>${row.INDT}</td>
+                        </tr>
+                         `);
+                        });
+
+                        document.getElementById('demoJSON').innerHTML = table1.join('\n');
+
+                        }
+                    </script>
+                    </div>
+                    
+                    <div class="title">
+                        <h2>새로 나온 책</h2>
+                    </div>
+
+                </div>
+            </section>
+
+            <section class="contact-section section" id="section-4">
+                <div class="container">
+                    <div class="title">
+                        <h3>찾아오시는 길</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 mb-4 contact-form">
+                            <div class="form tm-contact-item-inner">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">정류장명</th>
+                                            <th scope="col">버스번호</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>① 시청ㆍ서울신문사(02-706)</td>
+                                            <td>공항 6005</td>
+                                        </tr>
+                                        <tr>
+                                            <td>② 프레스센터(02-507)</td>
+                                            <td>마을 종로09, 종로11, 공항 6701</td>
+                                        </tr>
+                                        <tr>
+                                            <td>③ 시청앞ㆍ덕수궁(02-286)</td>
+                                            <td>간선 401, 402, 406, N16, 지선 1711, 7016, 7022</td>
+                                        </tr>
+                                        <tr>
+                                            <td>④ 시청광장(02-641)</td>
+                                            <td>간선 172, 405, 472, N62</td>
+                                        </tr>
+                                        <tr>
+                                            <td>⑤ 시청역(02-503)</td>
+                                            <td>마을 종로09, 종로11</td>
+                                        </tr>
+                                        <tr>
+                                            <td>⑥ 시청덕수궁(02-662)</td>
+                                            <td>순환 90S투어, 공항6005</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-4 contact-details">
+                            <div class="tm-contact-item-inner-2">
+        
+                                    <h3 class="guideTitle1">서울시청 주차장 안내</h3>
+                                    <ul class="guideList1">
+                                        <li>주차공간이 많이 부족하오니 되도록 대중교통을 이용해 주시기 바랍니다.
+                                            <br>주차정보안내시스템
+                                            (<a title="새창" href="http://parking.seoul.go.kr/" target="_blank">http://parking.seoul.go.kr/</a>)에서 시청 주변 공영주차장을 확인하실 수 있습니다.
+                                        </li>
+                                        <li>청사 시설물을 보호하기 위해 높이 2.3m 이상 차량은 주차장으로 진입할 수 없습니다.</li>
+                                        <li>개방시간 : 평일 08:30~21:00 주말.공휴일 09:00 ~21:00 (시민청 개방시간과 동일)<br><span style="color:red">매월 넷째 주 수요일 '대중교통 이용의 날'</span>은 서울시 및 산하기관, 자치구 부설 <span style="color:red">주차장이 폐쇄됩니다.</span><li>주차요금 : 10분당 1,000원 (평일 09:00~18:00만 부과)</li>(장애인 차량, 긴급차량 등 제외)</li>
+                                </ul>
+                            </div>                        
+                        </div>
+                        <div class="col-lg-3 col-md-12 map">
+                            <!-- Map -->
+                            <div class="map-outer tm-mb-40">
+                                <div class="gmap-canvas">
+                                    <div id="googleMap" style="width:100%;height:400px;"></div>
+                                  
+                            
+                                    <script>
+                                    function myMap() {
+	                                let lat, lng;
+                                    [lat, lng] = [37.566600,126.978350];
+
+                                    // 구글맵 객체의 property 들 지정
+                                    const mapProp = {
+                                    // center : 지도의 중심좌표
+                                    center: new google.maps.LatLng(lat, lng),
+
+                                    // zoom level
+                                    zoom: 17,
+                                        };
+                                        
+                                 const map = new google.maps.Map(document.getElementById('googleMap'), mapProp);
+                                       
+                                // 마커 지정
+	                            const myPos1 = {lat: lat, lng: lng};
+	                            let marker1 = new google.maps.Marker({position: myPos1,
+                                    animation: google.maps.Animation.drop,});
+                               
+	                            marker1.setMap(map);
+                                
+                                    }
+                                    </script>    
+                                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABPF10D9pTQMYS04qOBCJgNX6A3Bx4yMg&callback=myMap"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>                
+                </div>
+                <footer class="footer container container-2">
+                    
+                </footer>
+            </section>
+        </main>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.singlePageNav.min.js"></script>
+    <script src="js/slick.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/templatemo-script.js"></script>
+</body>
+</html>
