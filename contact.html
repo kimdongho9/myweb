@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>서울시 도서관</title>
+	  <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body> 
+
+	<div class="container">
+		<div class="placeholder">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="img/simple.jpg">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
+							<img src="img/simple-house-logo.png" alt="Logo" class="tm-site-logo" /> 
+							<div class="tm-site-text-box">
+								<h1 class="tm-site-title">서울시 도서관</h1>
+								<h6 class="tm-site-description">Seoul Matropolitan Library</h6>	
+							</div>
+						</div>
+						<nav class="col-md-6 col-12 tm-nav">
+							<ul class="tm-nav-ul">
+								<li class="tm-nav-li"><a href="index.html" class="tm-nav-link">Home</a></li>
+								<li class="tm-nav-li"><a href="newbook.html" class="tm-nav-link">새로 들어온 책</a></li>
+								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link active">찾아오시는 길</a></li>
+								<li class="tm-nav-li"><a href="qna.html" class="tm-nav-link">자주 묻는 질문</a></li>
+							</ul>
+						</nav>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">찾아오시는 길</h2>
+				
+			</header>
+
+			<div class="tm-container-inner-2 tm-contact-section">
+				<div class="row">
+					<div class="col-md-6">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">정류장명</th>
+									<th scope="col">버스번호</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>① 시청ㆍ서울신문사(02-706)</td>
+									<td>공항 6005</td>
+								</tr>
+								<tr>
+									<td>② 프레스센터(02-507)</td>
+									<td>마을 종로09, 종로11, 공항 6701</td>
+								</tr>
+								<tr>
+									<td>③ 시청앞ㆍ덕수궁(02-286)</td>
+									<td>간선 401, 402, 406, N16, 지선 1711, 7016, 7022</td>
+								</tr>
+								<tr>
+									<td>④ 시청광장(02-641)</td>
+									<td>간선 172, 405, 472, N62</td>
+								</tr>
+								<tr>
+									<td>⑤ 시청역(02-503)</td>
+									<td>마을 종로09, 종로11</td>
+								</tr>
+								<tr>
+									<td>⑥ 시청덕수궁(02-662)</td>
+									<td>순환 90S투어, 공항6005</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="col-md-6">
+						
+							<h2 class="guideTitle1">서울시청 주차장 안내</h2>
+							<br><br>
+							<ul class="guideList1">
+								<li>주차공간이 많이 부족하오니 되도록 대중교통을 이용해 주시기 바랍니다.</li>
+									
+
+								
+								<li>청사 시설물을 보호하기 위해 높이 2.3m 이상 차량은 주차장으로 진입할 수 없습니다.</li>
+								<li>개방시간 : 평일 08:30~21:00 주말.공휴일 09:00 ~21:00 (시민청 개방시간과 동일)<br><span style="color:red">매월 넷째 주 수요일 '대중교통 이용의 날'</span>은 서울시 및 산하기관, 자치구 부설 <span style="color:red">주차장이 폐쇄됩니다.</span><li>주차요금 : 10분당 1,000원 (평일 09:00~18:00만 부과)</li>(장애인 차량, 긴급차량 등 제외)</li>
+							</ul>
+						
+					</div>
+				</div>
+			</div>
+            
+<!-- 구글 맵 -->
+			<div class="tm-container-inner-2 tm-map-section">
+				<div class="row">
+					<div class="col-12">
+						<div class="tm-map">
+							<div id="googleMap" style="width:100%;height:400px;"></div>
+							<script>
+							function myMap() {
+							let lat, lng;
+							[lat, lng] = [37.566600,126.978350];
+
+							// 구글맵 객체의 property 들 지정
+							const mapProp = {
+							// center : 지도의 중심좌표
+							center: new google.maps.LatLng(lat, lng),
+
+							// zoom level
+							zoom: 17,
+								};
+								
+						 const map = new google.maps.Map(document.getElementById('googleMap'), mapProp);
+							   
+						// 마커 지정
+						const myPos1 = {lat: lat, lng: lng};
+						let marker1 = new google.maps.Marker({position: myPos1,
+							animation: google.maps.Animation.BOUNCE,});							
+						marker1.setMap(map);						
+							}
+							</script>    
+							<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABPF10D9pTQMYS04qOBCJgNX6A3Bx4yMg&callback=myMap"></script>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tm-container-inner-2 tm-info-section">
+				<div class="row">
+					
+				</div>
+			</div>
+		</main>
+
+		<footer class="tm-footer text-center">
+			<p> 서울도서관 서울특별시 중구 세종대로 110
+				<br>
+				전화번호 : 02-120, 02-2133-0300
+				<br>
+				이용시간 : 화~금 09:00~21:00 / 토, 일 09:00~18:00 / 월요일, 공휴일 휴관  
+            </p>
+		</footer>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+</body>
+</html>

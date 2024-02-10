@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>서울시 도서관</title>
+  	<link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body> 
+
+	<div class="container">
+	<!-- 맨 위 -->
+		<!-- 로고 -->
+		<div class="placeholder">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="img/simple.jpg">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
+							<img src="img/simple-house-logo.png" alt="Logo" class="tm-site-logo" /> 
+							<div class="tm-site-text-box">
+								<h1 class="tm-site-title">서울시 도서관</h1>
+								<h6 class="tm-site-description">Seoul Matropolitan Library</h6>	
+							</div>
+						</div>
+						<nav class="col-md-6 col-12 tm-nav">
+							<ul class="tm-nav-ul">
+								<li class="tm-nav-li"><a href="index.html" class="tm-nav-link">Home</a></li>
+								<li class="tm-nav-li"><a href="newbook.html" class="tm-nav-link">새로 들어온 책</a></li>
+								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link ">찾아오시는 길</a></li>
+								<li class="tm-nav-li"><a href="qna.html" class="tm-nav-link active">자주 묻는 질문</a></li> 
+							</ul>
+						</nav>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+	 <main>
+			<div class="tm-container-inner-2 tm-info-section">
+				<div class="row">
+					<!-- FAQ -->
+					<div class="col-12 tm-faq">
+						<h2 class="text-center tm-section-title">자주 묻는 질문</h2>
+						<div class="tm-accordion">
+							<button class="accordion">1. 민원 취하는 어떻게 할 수 있나요?</button>
+							<div class="panel">
+							  <p>민원 취하는 민원을 신청한 채널(응답소 홈페이지, 120다산콜재단, 국민신문고 등)을 통해서 본인이 직접 할 수 있습니다.
+								120다산콜재단을 통해 신청하신 민원의 취하는 02)120으로 문의해주시기 바랍니다.</p>
+							</div>
+							
+							<button class="accordion">2. 민원 내역을 삭제하고 싶어요.</button>
+							<div class="panel">
+							  <p>민원정보는 공공기록물관리에 관한 법률 시행령 제25조 (기록관리기준표 등)에 근거하여 보존해야 합니다.
+								따라서 삭제가 불가능하며 같은 법 제26조 (보존기간) 및 서울시 기록관리기준표에 따라 민원정보의 보존기간은 10년입니다.</p>
+							</div>
+							
+							<button class="accordion">3. 민원 공개 신청했는데 어디까지 공개되는지 궁금해요.</button>
+							<div class="panel">
+							  <p>ㅇ 공개 항목
+								- 민원 제목, 민원요지, 민원처리자가 작성한 답변내용
+								
+								<br>※ 민원신청인 개인정보는 공개되지 않으며 민원 내용 및 답변에 있는 개인정보는 정제되어 공개됩니다.</p>
+							</div>
+							
+							<button class="accordion">4. 민원 내용을 수정하고 싶어요.</button>
+							<div class="panel">
+								<p>- 민원내용 수정은 응답소 민원결과 페이지에서 할 수 있으며 민원 접수 직전까지만 가능합니다.
+									
+									<br>※ 평일 근무시간(09:00~18:00)에는 신청 이후 접수까지 빠른 시간 내에 이루어질 수 있습니다.
+									</p>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>		
+	    </main>
+	
+		<footer class="tm-footer text-center">
+			<p> 서울도서관 서울특별시 중구 세종대로 110
+				<br>
+				전화번호 : 02-120, 02-2133-0300
+				<br>
+				이용시간 : 화~금 09:00~21:00 / 토, 일 09:00~18:00 / 월요일, 공휴일 휴관  
+            </p>
+		</footer>
+	</div>
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			let acc = document.getElementsByClassName("accordion");
+			let i;
+			
+			for (i = 0; i < acc.length; i++) {
+			  acc[i].addEventListener("click", function() { //클릭시 지정된 함수가 자동으로 실행
+			    this.classList.toggle("active"); //accordion[i] 들이 활성화 되면
+
+			    let panel = this.nextElementSibling;   //panal 형제들 = panal들 모두 적용
+
+			    if (panel.style.maxHeight) { //펼져진 상태 일 때
+			      panel.style.maxHeight = null; //섹션의 내용을 숨김 
+			    } else {
+			      panel.style.maxHeight = panel.scrollHeight + "px"; //panel의 최대 높이 설정
+			    }
+			
+	         });
+			}	
+		});
+	
+	</script>
+</body>
+</html>

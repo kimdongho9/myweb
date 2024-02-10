@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>서울시 도서관</title>
+	  <link href="css/style.css" rel="stylesheet" />
+	
+	
+</head>
+
+<body> 
+
+	<div class="container">
+	<!-- 맨 위 -->
+		<div class="placeholder">
+			<div class="parallax-window" data-parallax="scroll" data-image-src="img/simple.jpg">
+				<div class="tm-header">
+					<div class="row tm-header-inner">
+						<div class="col-md-6 col-12">
+							<img src="img/simple-house-logo.png" alt="Logo" class="tm-site-logo" /> 
+							<div class="tm-site-text-box">
+								<h1 class="tm-site-title">서울시 도서관</h1>
+								<h6 class="tm-site-description">Seoul Matropolitan Library</h6>	
+							</div>
+						</div>
+						<nav class="col-md-6 col-12 tm-nav">
+							<ul class="tm-nav-ul">
+								<li class="tm-nav-li"><a href="index.html" class="tm-nav-link">Home</a></li>
+								<li class="tm-nav-li"><a href="newbook.html" class="tm-nav-link active">새로 들어온 책</a></li>
+								<li class="tm-nav-li"><a href="contact.html" class="tm-nav-link">찾아오시는 길</a></li>
+								<li class="tm-nav-li"><a href="qna.html" class="tm-nav-link">자주 묻는 질문</a></li>
+							</ul>
+						</nav>	
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<main>
+			<header class="row tm-welcome-section">
+				<h2 class="col-12 text-center tm-section-title">새로 들어온 책</h2>
+				<p class="col-12 text-center"></p>
+			</header>
+
+			<div class="tm-container-inner tm-persons">
+				
+
+				
+			</div>
+
+			
+
+			<!-- 검색 폼 -->
+			<div class="tm-container-inner tm-features">
+				<div class="row">
+					<form>
+						<input type="text" name="name" id="name" value= "" placeholder = "책 제목">
+						<br><br>                        
+						<input type="number" value="" id="curPage" placeholder = "현재 페이지 1~10">
+						<br><br>
+						<input type="number" value="" id="itemPerPage" placeholder = "출력 줄 1~10">
+						<br><br>
+
+						<div id = custom-btn>
+							<button type="button" id = btn-4 onclick="loadData()" class="custom-btn btn-4 tm-right">검색</button>
+							<button type="button" id = btn-42 onclick="removeTable()"class="custom-btn btn-42 tm-right">지우기</button>							
+						</div>
+						<br>
+					</form>
+
+					<table id="demoJSON"></table>
+						<script>
+						
+							var api_key = "476749614c67757a373858794e5276";
+
+							function removeTable(){
+
+							document.getElementById('demoJSON').innerHTML = "";
+							}
+
+					
+							function loadData() {
+
+							let name = document.getElementById('name').value.trim();
+							let curPage = document.getElementById('curPage').value.trim();
+							let itemPerPage = document.getElementById('itemPerPage').value.trim();
+							let url
+
+
+
+						//유효성 검사
+						if(name === null || name === ''){
+						alert('책 제목은 반드시 입력해야합니다');
+						return;
+						}
+						
+						if (curPage < 1 || isNaN(curPage)) {
+						alert("페이지는 1이상 숫자 이어야 합니다.");
+						itemPerPage.focus();
+						return;
+						}
+
+						if (itemPerPage < 1 || itemPerPage > 10 ||isNaN(itemPerPage)) {
+						alert("출력 줄은 1 ~ 10 사이의 정수입니다.");
+						itemPerPage.focus();
+						return;
+						}
+						// JSON
+						url = `http://openapi.seoul.go.kr:8088/${api_key}/json/SeoulLibNewArrivalInfo/${curPage}/${itemPerPage}/${name}`;
+						fetch(url)
+						.then(response => response.json()) 
+						.then(jsonObj => parseJSON(jsonObj))
+						;
+										   
+					} // end loadData()
+			
+					
+					// 제이슨 
+					function parseJSON(jsonObj){
+
+					const table1 = [];
+					table1.push("<tr><th>제목</th><th>작가</th><th>출판사</th><th>발행년도</th><th>입수일</th></tr>");
+					
+					jsonObj.SeoulLibNewArrivalInfo.row.forEach(row => {
+					table1.push(`
+					<tr>
+						<td>${row.TITLE}</td>
+						<td>${row.AUTHOR}</td>
+						<td>${row.PUBLISHER}</td>
+						<td>${row.PUBLISHER_YEAR}</td>
+						<td>${row.INDT}</td>
+					</tr>
+					 `);
+					});
+
+					document.getElementById('demoJSON').innerHTML = table1.join('\n');
+
+					}
+
+					</script>
+				</div>
+			</div>
+
+
+			<!-- 맨 아래 부분 -->
+			<div class="tm-container-inner tm-history">
+				<div class="row">
+					<div class="col-12">
+						<div class="tm-history-inner">
+							<img src="img/new-01.JPG" alt="Image" class="img-fluid tm-history-img" />
+							<div class="tm-history-text"> 
+								<h4 class="tm-history-title"><b>생각마루</b></h4>
+								<p class="tm-mb-p">서울도서관의 자랑이라면 서울도서관 파사드(facade) 내부를 따라 설계한 건축가 유걸 선생님의 작품인 벽면서가를 들 수 있습니다. 
+									효율적인 공간 구성, 외부소음차단 등의 장점을 지닌 벽면서가의 압권은 단연 일반자료실 1, 2층을 개방하여 만든 높은 벽면 서가와 원목으로 제작한 생각마루로 서울도서관 개관 후 꾸준히 시민들이 가장 즐겨 찾는 명소가 되었습니다.
+									 생각마루는 독서를 통해 시민의 힘을 키우는 민주주의의 보루로서의 서울도서관과 서울시의 대표도서관으로서의 중요성을 상징합니다. 평상시 생각마루는 연인과 친구, 가족이 한 자리 모여 독서와 여유를 즐기는 독서 사랑방이고, 때때로 토론회, 음악회, 강연회 등 다채로운 행사들이 열리는 서울도서관 열린 광장입니다.</p>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</main>
+
+	
+
+		<!-- 푸터 -->
+		<footer class="tm-footer text-center">
+			<p> 서울도서관 서울특별시 중구 세종대로 110
+				<br>
+				전화번호 : 02-120, 02-2133-0300
+				<br>
+				이용시간 : 화~금 09:00~21:00 / 토, 일 09:00~18:00 / 월요일, 공휴일 휴관  
+
+            </p>
+		</footer>
+	</div>
+	<script src="js/jquery.min.js"></script>
+	<script src="js/parallax.min.js"></script>
+</body>
+</html>
